@@ -22,14 +22,12 @@ if (window.WebSocket) {
   const roomSocket = new WebSocket(`ws://localhost:4850/9`)
   roomSocket.onmessage = ({ data }) => {
     const store = JSON.parse(data)
-    console.log('GETTING NEW STORE', store)
     app.engine.store = store
     app.engine.actions.triggerRender()
   }
   
   roomSocket.onopen = () => {
     app.addListener((store, actions, actionName, actionArgs) => {
-      console.log('SENDING NEW STORE', store)
       if (actionName !== 'triggerRender') {
         roomSocket.send(JSON.stringify(store))
       }

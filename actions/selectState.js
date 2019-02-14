@@ -3,7 +3,7 @@ const intialState = null;
 const isClose = (pos1, pos2) => {
   const [x1, y1] = pos1;
   const [x2, y2] = pos2;
-  return x1 - x2 <= 1 && y1 - y2 <= 1;
+  return Math.abs(x1 - x2) <= 1 && Math.abs(y1 - y2) <= 1;
 }
 
 module.exports = {
