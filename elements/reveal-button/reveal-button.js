@@ -12,11 +12,7 @@ module.exports = () => {
   `
 
   const revealBoard = (event) => {
-    const {player, turn} = window.tramEngine.store;
-    const {revealBoard} = window.tramEngine.actions;
-    if (player === turn) {
-      revealBoard(player)
-    }
+    window.tramEngine.actions.revealBoard();
   }
 
   return html`
