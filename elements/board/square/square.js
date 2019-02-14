@@ -11,6 +11,11 @@ module.exports = ({x, y}, children) => {
   `
 
   const onSelectSquare = (event) => {
+    const {turn} = window.tramEngine.store
+    const {player} = window
+    if (turn !== player) {
+      return null
+    }
     if (x && y) {
       window.tramEngine.actions.selectSpace([x, y])
     }

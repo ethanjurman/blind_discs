@@ -10,10 +10,10 @@ const rowStyle = `
 `
 
 module.exports = ({board}) => {
-  const player = window.tramEngine.store.player
-  const [isRevealed, playerToReveal] = window.tramEngine.store.reveal
-  const isRevealedToPlayer1 = isRevealed && playerToReveal === PLAYER_1
-  const isRevealedToPlayer2 = isRevealed && playerToReveal === PLAYER_2
+  const player = window.player
+  const playerToReveal = window.tramEngine.store.reveal
+  const isRevealedToPlayer1 = playerToReveal === PLAYER_1
+  const isRevealedToPlayer2 = playerToReveal === PLAYER_2
   const boardRenders = board.map((row, x) => {
     return row.map((square, y) => {
       if (square === PLAYER_1 && (player === PLAYER_1 || isRevealedToPlayer2)) {

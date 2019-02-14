@@ -7,7 +7,7 @@ const WS = expressWs(express(), null, { wsOptions })
 const server = WS.getWss()
 const app = WS.app
 
-app.ws('/room/:room', (ws, req) => {
+app.ws('/:room', (ws, req) => {
   ws.on('message', (msg) => {
     Array.from(server.clients)
       .filter(client => client.upgradeReq.url === ws.upgradeReq.url)

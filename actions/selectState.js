@@ -10,10 +10,6 @@ module.exports = {
   init: () => intialState,
   selectPlayerPiece: (lastSelection, newSelection) => newSelection,
   selectSpace: (lastSelection, newSelection, actions) => {
-    const {turn, player} = window.tramEngine.store;
-    if (turn !== player) {
-      return null
-    }
     if (!lastSelection) {
       return newSelection
     }
