@@ -15,7 +15,7 @@ app.addActions({
 app.start('.main')
 
 app.addActions({
-  rerenderer: { init: () => null, triggerRender: () => null }
+  rerenderer: { init: () => null, triggerRender: () => null, loadStore: () => null }
 })
 
 if (window.WebSocket) {
@@ -32,6 +32,7 @@ if (window.WebSocket) {
         roomSocket.send(JSON.stringify(store))
       }
     })
+    app.engine.actions.loadStore()
   }
 }
 

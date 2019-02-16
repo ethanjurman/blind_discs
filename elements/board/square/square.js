@@ -1,29 +1,36 @@
 const Tram = require('tram-one')
 const html = Tram.html()
 
-module.exports = ({x, y}, children) => {
+const getBackgroundColor = (x, y) => {
+  return (x % 2 === 0) ^ (y % 2 === 0) 
+    ? "rgba(230, 230, 230, 1)" 
+    : "rgba(180, 180, 180, 1)"
+}
+
+const onSelectSquare = (x, y, selectable) => (event) => {
+  const {turn, selectState} = window.tramEngine.store
+  const {player} = window
+  if (selectable == 'false' || (turn !== player)) {
+    return null
+  }
+
+  if (selectState) {
+    // select state should be defined from clicking a piece
+    window.tramEngine.actions.selectSpace([x, y])
+  }
+}
+
+module.exports = ({x, y, selectable}, children) => {
   const style = `
-    background: white;
+    background: ${getBackgroundColor(x,y)};
     border: solid 6px black;
     margin: -3px -3px;
     width: 70px;
     height: 70px;
   `
 
-  const onSelectSquare = (event) => {
-    const {turn} = window.tramEngine.store
-    const {player} = window
-    if (turn !== player) {
-      return null
-    }
-    if (x && y) {
-      window.tramEngine.actions.selectSpace([x, y])
-    }
-    // else it has a piece on it
-  }
-  
   return html`
-    <div style=${style} onclick=${onSelectSquare}>
+    <div style=${style} onclick=${onSelectSquare(x, y, selectable)}>
       ${children}
     </div>
   `

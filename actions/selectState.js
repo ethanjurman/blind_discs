@@ -19,7 +19,7 @@ module.exports = {
         actions.move([lastSelection, newSelection])
         return null
       }
-      return newSelection
+      return null
     }
   } 
 }

@@ -17,10 +17,18 @@ module.exports = ({board}) => {
   const boardRenders = board.map((row, x) => {
     return row.map((square, y) => {
       if (square === PLAYER_1 && (player === PLAYER_1 || isRevealedToPlayer2)) {
-        return html`<Square><GamePiece x=${x} y=${y} player=${PLAYER_1} /></Square>`
+        return html`
+          <Square x=${x} y=${y} selectable=${false}>
+            <GamePiece x=${x} y=${y} player=${PLAYER_1} />
+          </Square>
+        `
       }
       if (square === PLAYER_2 && (player === PLAYER_2 || isRevealedToPlayer1)) {
-        return html`<Square><GamePiece x=${x} y=${y} player=${PLAYER_2} /></Square>`
+        return html`
+          <Square x=${x} y=${y} selectable=${false} >
+            <GamePiece x=${x} y=${y} player=${PLAYER_2} />
+          </Square>
+        `
       }
       return html`<Square x=${x} y=${y} />`
     })
