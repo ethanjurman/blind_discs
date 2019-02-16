@@ -19,7 +19,10 @@ app.addActions({
 })
 
 if (window.WebSocket) {
-  const roomSocket = new WebSocket(`ws://localhost:4850/9`)
+  const [room, player] = window.location.href.split("/").splice(-2)
+  console.log(room, player)
+
+  const roomSocket = new WebSocket(`ws://10.0.0.247:4850/9`)
   roomSocket.onmessage = ({ data }) => {
     const store = JSON.parse(data)
     app.engine.store = store

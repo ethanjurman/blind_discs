@@ -34,12 +34,28 @@ const shouldGameEnd = (grid) => {
   return [false];
 }
 
+const getWinLoseString = (winningPlayer) => {
+  const player = window.player
+
+  if (player === winningPlayer) {
+    return "You Win!"
+  } else {
+    return "You Lose."
+  }
+}
+
 module.exports = () => {
   const {board} = window.tramEngine.store
   if (board) {
-    const [isFinished, player, reason] = shouldGameEnd(board)
+    const [isFinished, winningPlayer, reason] = shouldGameEnd(board)
+    const winLoseString = getWinLoseString(winningPlayer)
     if (isFinished) {
-      return html`<div>${reason}</div>`
+      return html`
+        <div>
+          <b>${winLoseString}</b>
+          <div>${reason}</div>
+        </div>
+      `
     }
   }
   

@@ -13,19 +13,20 @@ const isSelectedSpace = ([x1, y1]) => {
 
 module.exports = ({x, y, player}) => {
   const isPlayerTurn = window.tramEngine.store.turn === player
+  const isPlayer = window.player === player
 
   const style = `
     background: ${player === PLAYER_1 ? 'white' : 'black'};
     cursor: pointer;
-    border: solid 5px ${isPlayerTurn ? '#03a9f4' : 'gray'};
+    border: solid 5px ${isPlayer && isPlayerTurn ? '#03a9f4' : 'gray'};
     width: 60px;
     height: 60px;
     border-radius: 100%;
-    border-color: ${isSelectedSpace([x,y]) ? '#ff9800': ''};
+    border-color: ${isPlayer && isSelectedSpace([x,y]) ? '#ff9800': ''};
   `
   
   const onSelectPiece = (event) => {
-    if (x && y && isPlayerTurn) {
+    if (x && y && isPlayerTurn && isPlayer) {
       window.tramEngine.actions.selectPlayerPiece([x, y])
     }
   }
