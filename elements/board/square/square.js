@@ -2,7 +2,7 @@ const Tram = require('tram-one')
 const html = Tram.html()
 
 const getBackgroundColor = (x, y) => {
-  return (x % 2 === 0) ^ (y % 2 === 0) 
+  return (x % 2) ^ (y % 2) 
     ? "rgba(230, 230, 230, 1)" 
     : "rgba(180, 180, 180, 1)"
 }
