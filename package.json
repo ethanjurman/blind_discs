@@ -7,6 +7,8 @@
     "build": "webpack --env production",
     "test": "jasmine ./specs/specs.js",
     "postbuild": "tram-build-page -a './main.js' -r '/no-js' -i './public/index.html' -o './dist/index.html'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start:service": "node service/service.js"
   },
   "keywords": [

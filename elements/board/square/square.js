@@ -26,6 +26,7 @@ module.exports = ({x, y, selectable}, children) => {
     border: solid 6px black;
     margin: -3px -3px;
     width: 70px;
+    min-width: 70px;
     height: 70px;
   `
 
