@@ -3,7 +3,7 @@ require("babel-polyfill")
 
 window.tramEngine = {}
 const app = new Tram( { webEngine: window.tramEngine } )
-app.addRoute('/:room/:player', require('./pages/home'))
+app.addRoute(':room/:player', require('./pages/home'))
 app.addRoute('/404', require('./pages/404'))
 app.addRoute('/no-js', require('./pages/no-js'))
 app.addActions({ 
@@ -19,10 +19,10 @@ app.addActions({
 })
 
 if (window.WebSocket) {
-  const [room, player] = window.location.href.split("/").splice(-2)
+  const [room, player] = window.location.hash.slice(1).split('/')
   console.log(room, player)
 
-  const roomSocket = new WebSocket(`ws://10.0.0.247:4850/9`)
+  const roomSocket = new WebSocket(`ws://142.93.189.186:5150/${room}`)
   roomSocket.onmessage = ({ data }) => {
     const store = JSON.parse(data)
     app.engine.store = store
