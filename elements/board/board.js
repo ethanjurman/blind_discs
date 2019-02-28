@@ -4,6 +4,12 @@ const Square = require('./square/square');
 const GamePiece = require('../game-piece/game-piece');
 const html = Tram.html({Square, GamePiece});
 
+const containerStyle =`
+  border: black 10px solid;
+  border-radius: 20px;
+  width: 380px;
+  margin: auto;
+`
 const rowStyle = `
   display: flex;
   justify-content: center;
@@ -37,7 +43,7 @@ module.exports = ({board}) => {
   })
   
   return html`
-    <div>
+    <div style=${containerStyle}>
       ${boardRenders}
     </div>
   `
