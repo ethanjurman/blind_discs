@@ -23,7 +23,7 @@ app.addActions({
 if (window.WebSocket) {
   const [room] = window.location.hash.slice(1).split('/')
 
-  const roomSocket = new WebSocket(`wss://142.93.189.186:5150/${room}`)
+  const roomSocket = new WebSocket(`wss://socket-bouncer.com:5150/blind_discs/${room}`)
   roomSocket.onmessage = ({ data }) => {
     const store = JSON.parse(data)
     app.engine.store = store
